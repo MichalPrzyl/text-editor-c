@@ -86,8 +86,13 @@ fclose(infile);
 /* confirm we have read the file by
 outputing it to the console */
 printf("The file called test.dat contains this text\n\n%s", buffer);
+puts("==============");
  
 /* free the memory we used for the buffer */
+for (int i=0; i< 10; i++ ){
+    char x = buffer[i];
+    puts(x);
+}
 free(buffer);
 
 
