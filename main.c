@@ -43,60 +43,32 @@ int main(void)
     // FILE* ptr;
     // ptr = fopen("test_text_file.txt", "r");
 
-
-
-
-		
-
-/* declare a file pointer */
-FILE    *infile;
-char    *buffer;
-long    numbytes;
- 
-/* open an existing file for reading */
-infile = fopen("test_text_file.txt", "r");
- 
-/* quit if the file does not exist */
-if(infile == NULL)
-    return 1;
- 
-/* Get the number of bytes */
-fseek(infile, 0L, SEEK_END);
-numbytes = ftell(infile);
- 
-/* reset the file position indicator to 
-the beginning of the file */
-fseek(infile, 0L, SEEK_SET);	
- 
-/* grab sufficient memory for the 
-buffer to hold the text */
-buffer = (char*)calloc(numbytes, sizeof(char));	
- 
-/* memory error */
-if(buffer == NULL)
-    return 1;
-else{
-    puts("buffer is not empty. It's good");
-}
- 
-/* copy all the text into the buffer */
-fread(buffer, sizeof(char), numbytes, infile);
-fclose(infile);
- 
-/* confirm we have read the file by
-outputing it to the console */
-printf("The file called test.dat contains this text\n\n%s", buffer);
-puts("==============");
- 
-/* free the memory we used for the buffer */
-for (int i=0; i< 10; i++ ){
-    char x = buffer[i];
-    puts(x);
-}
-free(buffer);
+    /* declare a file pointer */
+    FILE    *fp;
+    // char    *buffer;
+    // long    numbytes;
+    
+    /* open an existing file for reading */
+    fp = fopen("test_text_file.txt", "r");
+        // fastest way to get content into buffer
+    char buffer[9999];
+    fgets(buffer, 30, fp); 
+    
+    /* confirm we have read the file by
+    outputing it to the console */
+    
+    /* free the memory we used for the buffer */
+    for (int i=0; i< 30; i++ ){
+        char x = buffer[i];
+        printf("%c", x);
+    }
 
 
     // Main game loop
+    int starting_x = 20;
+    int starting_y = 20;
+    int x_increment = 10;
+    int y_increment = 10;
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
         // Update
@@ -106,13 +78,20 @@ free(buffer);
 
         // Draw
         //----------------------------------------------------------------------------------
+        char weird[] = "seee";
+        char *my_stupido_pointero = weird[0];
+        char *my_stupido_pointero2 = "w";
+        puts(my_stupido_pointero);
         BeginDrawing();
 
             ClearBackground(RAYWHITE);
             
-            char ch;
-            
-            DrawText("x", 190, 200, 20, BLACK);
+            DrawText(my_stupido_pointero, 150, 150, 20, BLACK);
+            // for (int i = 0; i != '\0'; i++){
+                // char *mychar = buffer[i];
+                // DrawText("my_stupido_pointero2", starting_x + i * x_increment, starting_y + i*y_increment, 20, BLACK);
+
+            // }
             
             // DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
             // DrawText("Fucking idiot", 190, 220, 20, LIGHTGRAY);
