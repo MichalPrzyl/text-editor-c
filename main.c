@@ -37,21 +37,58 @@ int main(void)
 
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
 
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+    SetTargetFPS(1);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
     // char *filename = "test_text_file.txt";
-    FILE* ptr;
-    ptr = fopen("test_text_file.txt", "r");
-    char ch;
-    do {
-        ch = fgetc(ptr);
-        printf("%c", ch);
+    // FILE* ptr;
+    // ptr = fopen("test_text_file.txt", "r");
+
+
+
+
+		
+
+/* declare a file pointer */
+FILE    *infile;
+char    *buffer;
+long    numbytes;
  
-        // Checking if character is not EOF.
-        // If it is EOF stop reading.
-    } while (ch != EOF);
-
-
+/* open an existing file for reading */
+infile = fopen("test_text_file.txt", "r");
+ 
+/* quit if the file does not exist */
+if(infile == NULL)
+    return 1;
+ 
+/* Get the number of bytes */
+fseek(infile, 0L, SEEK_END);
+numbytes = ftell(infile);
+ 
+/* reset the file position indicator to 
+the beginning of the file */
+fseek(infile, 0L, SEEK_SET);	
+ 
+/* grab sufficient memory for the 
+buffer to hold the text */
+buffer = (char*)calloc(numbytes, sizeof(char));	
+ 
+/* memory error */
+if(buffer == NULL)
+    return 1;
+else{
+    puts("buffer is not empty. It's good");
+}
+ 
+/* copy all the text into the buffer */
+fread(buffer, sizeof(char), numbytes, infile);
+fclose(infile);
+ 
+/* confirm we have read the file by
+outputing it to the console */
+printf("The file called test.dat contains this text\n\n%s", buffer);
+ 
+/* free the memory we used for the buffer */
+free(buffer);
 
 
     // Main game loop
@@ -67,9 +104,13 @@ int main(void)
         BeginDrawing();
 
             ClearBackground(RAYWHITE);
-
-            DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
-            DrawText("Fucking idiot", 190, 220, 20, LIGHTGRAY);
+            
+            char ch;
+            
+            DrawText("x", 190, 200, 20, BLACK);
+            
+            // DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
+            // DrawText("Fucking idiot", 190, 220, 20, LIGHTGRAY);
 
         EndDrawing();
         //----------------------------------------------------------------------------------
