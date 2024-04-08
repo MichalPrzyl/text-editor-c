@@ -1,1 +1,1 @@
-gcc -I src/include -L src/lib -o main main.c -lmingw32 -lSDL2main -lSDL2 -lSDL2_ttf && ./main.exe
+gcc -o main.c main -Wall -std=c99 -I include/ -L lib/ -lraylib -lopengl32 -lgdi32 -lwinmm
