@@ -1,0 +1,2 @@
+Witam serdecznie.
+To jest przykładowy plik tekstowy.
