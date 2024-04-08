@@ -22,7 +22,9 @@
 ********************************************************************************************/
 
 #include "include/raylib.h"
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 //------------------------------------------------------------------------------------
 // Program main entry point
 //------------------------------------------------------------------------------------
@@ -37,6 +39,20 @@ int main(void)
 
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
+    // char *filename = "test_text_file.txt";
+    FILE* ptr;
+    ptr = fopen("test_text_file.txt", "r");
+    char ch;
+    do {
+        ch = fgetc(ptr);
+        printf("%c", ch);
+ 
+        // Checking if character is not EOF.
+        // If it is EOF stop reading.
+    } while (ch != EOF);
+
+
+
 
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
