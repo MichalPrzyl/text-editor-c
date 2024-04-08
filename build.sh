@@ -1,1 +1,1 @@
-gcc -o main.c main -Wall -std=c99 -I include/ -L lib/ -lraylib -lopengl32 -lgdi32 -lwinmm
+gcc main.c -o main -Wall -std=c99 -I include/ -L lib/ -lraylib -lopengl32 -lgdi32 -lwinmm
